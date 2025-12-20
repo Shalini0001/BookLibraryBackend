@@ -28,9 +28,7 @@ Task Scheduling: node-cron
    JWT_SECRET=your_jwt_secret_key
 4. Firebase Setup: Place your firebase-key.json file in the project root to enable Push Notifications.
 5. Run the Server:
-   # For production
      npm start
-   # For development (using nodemon)
      npx nodemon src/server.js
    
 🛰️ API Documentation
