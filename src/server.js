@@ -6,6 +6,7 @@ import connectDB from './config/db.js';
 // Routes - Ensure these files end in .routes.js in your folder
 import authRoutes from './routes/auth.routes.js';
 import bookRoutes from './routes/book.routes.js';
+import userRoutes from './routes/user.routes.js';
 import paymentRoutes from './routes/payment.routes.js';
 import notificationRoutes from './routes/notification.routes.js';
 
@@ -24,6 +25,7 @@ app.use(express.json());
 // API Routes
 app.use('/auth', authRoutes);
 app.use('/books', bookRoutes);
+app.use('/user', userRoutes);
 app.use('/payment', paymentRoutes);
 app.use('/notifications', notificationRoutes);
 

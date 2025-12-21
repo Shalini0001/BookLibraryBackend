@@ -13,7 +13,7 @@ router.post('/firebase-login', async (req, res) => {
   }
 
   const token = jwt.sign(
-    { userId: user._id },
+    { userId: user.id },
     process.env.JWT_SECRET,
     { expiresIn: '7d' }
   );

@@ -52,6 +52,22 @@ router.post('/verify', authMiddleware, async (req, res) => {
   }
 });
 
+// 3. Get Subscription Status
+router.get('/status', authMiddleware, async (req, res) => {
+  try {
+    // Find the latest subscription for this user
+    const subscription = await Subscription.findOne({ userId: req.userId }).sort({ createdAt: -1 });
+    
+    if (!subscription) {
+      return res.json({ status: 'NOT_PURCHASED' });
+    }
+    
+    res.json(subscription);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching status", error });
+  }
+});
+
 export default router;
 
 // import express from 'express';
