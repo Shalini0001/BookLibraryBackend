@@ -12,11 +12,6 @@ const authMiddleware = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // DEBUG TIP: Log 'decoded' once to see if it has 'id' or 'userId'
-    // console.log("Decoded Token:", decoded);
-
-    // Use whichever key you used in jwt.sign()
-    // Usually, it's either 'id' or 'userId'
     req.userId = decoded.id || decoded.userId; 
 
     if (!req.userId) {

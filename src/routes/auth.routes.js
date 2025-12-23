@@ -10,7 +10,6 @@ router.post('/firebase-login', async (req, res) => {
   try {
     let user = await User.findOne({ firebaseUid });
 
-    // If user exists and is fully registered, but they are trying to "Sign Up"
     if (user && user.username && flow === 'signup') {
       // return res.status(400).json({ 
       //   message: 'This phone number is already registered. Please login instead.' 

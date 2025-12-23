@@ -5,10 +5,9 @@ const userSchema = new mongoose.Schema({
   email: { type: String },
   phone: { type: String },
   fcmToken: { type: String },
-  // ADD THESE FIELDS:
   username: { type: String },
   dob: { type: String },
   isProfileComplete: { type: Boolean, default: false }
-}, { timestamps: true }); // Timestamps are helpful for tracking signup dates
+}, { timestamps: true });
 
 export default mongoose.model('User', userSchema);

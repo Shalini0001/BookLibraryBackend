@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import Book from './models/Book.js'; // Points to your existing model
+import Book from './models/Book.js';
 
 dotenv.config();
 
@@ -33,7 +33,6 @@ const books = [
 
 const seedDB = async () => {
   try {
-    // Make sure your .env file has MONGO_URI
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Connected to MongoDB...");
     

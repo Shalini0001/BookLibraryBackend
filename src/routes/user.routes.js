@@ -4,7 +4,6 @@ import authMiddleware from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
-// GET user profile (Used by AuthContext to restore session)
 router.get('/profile', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -15,7 +14,6 @@ router.get('/profile', authMiddleware, async (req, res) => {
   }
 });
 
-// UPDATE user profile (Used by RegisterUser screen)
 router.post('/profile', authMiddleware, async (req, res) => {
   const { username, email, dob } = req.body;
   try {
