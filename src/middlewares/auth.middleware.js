@@ -3,22 +3,29 @@ import jwt from 'jsonwebtoken';
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  // 1. Check for Bearer token
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ message: 'No token provided' });
   }
 
+  const token = authHeader.split(' ')[1];
+
   try {
-    const token = authHeader.split(' ')[1];
-    
-    // 2. Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // 3. Match the name 'userId' from your jwt.sign call
-    req.userId = decoded.userId; 
-    
+    // DEBUG TIP: Log 'decoded' once to see if it has 'id' or 'userId'
+    // console.log("Decoded Token:", decoded);
+
+    // Use whichever key you used in jwt.sign()
+    // Usually, it's either 'id' or 'userId'
+    req.userId = decoded.id || decoded.userId; 
+
+    if (!req.userId) {
+      return res.status(401).json({ message: 'Invalid token payload' });
+    }
+
     next();
   } catch (error) {
+    console.error("JWT Error:", error.message);
     return res.status(401).json({ message: 'Invalid or expired token' });
   }
 };

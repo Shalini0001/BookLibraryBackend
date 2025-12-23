@@ -30,15 +30,25 @@ Task Scheduling: node-cron
 5. Run the Server:
      npm start
      npx nodemon src/server.js
+   
+🛰️ API Documentation
+Method,   Endpoint,                Description                              Header
+POST,     /auth/firebase-login,    Verifies Firebase UID and returns 
+                                   a JWT token.
+GET,      /books,                  Returns a list of the 4 featured 
+                                   books.
+GET,      /books/:id,              Returns details for a specific book.
+POST,     /payment/create-order,   Generates a mock Razorpay Order ID.      Authorization: Bearer <token>,
+POST,     /payment/verify,         Activates a 30-day subscription.         Authorization: Bearer <token>,
 
 🕒 Subscription & CRON Logic
 The backend includes a scheduled task located in src/cron/subscription.cron.js.
-1. Schedule: Every day at 00:00 (Midnight).
-2. Action: Finds all ACTIVE subscriptions where the endDate is less than the current date, updates the status to EXPIRED, and sends an FCM push notification to the user.
+. Schedule: Every day at 00:00 (Midnight).
+. Action: Finds all ACTIVE subscriptions where the endDate is less than the current date, updates the status to EXPIRED, and sends an FCM push notification to the user.
 
 💡 Important Note on Razorpay
 Due to current RBI regulations and KYC requirements for new Razorpay accounts, this project uses a Mocked Payment Gateway approach.
-1. The /payment/create-order and /payment/verify endpoints return the exact data structure expected by the frontend, allowing for a seamless end-to-end user experience demo without requiring a live Merchant ID.
+. The /payment/create-order and /payment/verify endpoints return the exact data structure expected by the frontend, allowing for a seamless end-to-end user experience demo without requiring a live Merchant ID.
 
 🧪 Testing with Postman
 Login: Use /auth/firebase-login to get a token.
